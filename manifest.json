@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Domain Locale & Timezone",
+  "short_name": "Locale/TZ",
+  "version": "1.1.0",
+  "description": "Подмена языковых настроек, Intl, локальной таймзоны и Accept-Language для выбранных доменов.",
+  "minimum_chrome_version": "138",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "userScripts",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "optional_host_permissions": [
+    "*://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Locale & Timezone — настройки",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

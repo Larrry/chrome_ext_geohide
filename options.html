@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Domain Locale & Timezone — настройки</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="head">
+      <div class="mark">L/T</div>
+      <div>
+        <h1>Локаль и таймзона по доменам</h1>
+        <p>Chrome · Manifest V3 · правила только для выбранных сайтов</p>
+      </div>
+    </header>
+    <section class="banner" id="state" role="status" aria-live="polite">Проверяем настройки…</section>
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Домены</h2>
+          <p>Каждая запись действует на домен и его поддомены. Более конкретное правило имеет приоритет. Удалённые домены автоматически убираются из разрешений Chrome после сохранения.</p>
+        </div>
+        <button class="outline" id="addButton" type="button">+ Добавить домен</button>
+      </div>
+      <div id="rules" class="rule-list"></div>
+      <div id="empty" class="empty">Правил пока нет. Добавь первый домен, чтобы включить подмену.</div>
+    </section>
+    <div class="action-bar">
+      <span class="caption">Изменения действуют после перезагрузки соответствующей вкладки.</span>
+      <button id="save" class="primary" type="button">Сохранить и применить</button>
+    </div>
+    <section class="panel about">
+      <h2>Что подменяется</h2>
+      <p><b>JavaScript:</b> <code>navigator.language</code>, <code>navigator.languages</code>, локаль большинства <code>Intl.*</code>, форматирование чисел и дат, локальные методы <code>Date</code>, включая смещение и DST, и <code>Temporal.Now.timeZoneId()</code> (если доступен).</p>
+      <p><b>HTTP:</b> <code>Accept-Language</code> в запросах к выбранному сайту. Для запросов к сторонним адресам Chrome дополнительно требует разрешение доступа к этим адресам.</p>
+      <p><b>Не подменяется:</b> IP, системная геолокация, язык меню Chrome, часовой пояс сервера, Web Workers/Service Workers, языки установленных шрифтов и голосов. Это не полная защита от fingerprinting.</p>
+    </section>
+  </main>
+  <template id="rowTemplate">
+    <div class="rule">
+      <div class="rule-top">
+        <label class="switchline"><input type="checkbox" class="enabled" checked> <span>Включено</span></label>
+        <button type="button" class="delete" title="Удалить правило" aria-label="Удалить правило">Удалить</button>
+      </div>
+      <div class="fields">
+        <label class="field wide"><span>Домен</span><input class="domain" spellcheck="false" placeholder="example.com" autocomplete="off"><small>Также применяется к *.example.com</small></label>
+        <label class="field"><span>Локаль (BCP 47)</span><input class="locale" list="locales" spellcheck="false" placeholder="en-US"><small>Ранее использованные значения сохраняются в списке</small></label>
+        <label class="field"><span>Часовой пояс (IANA)</span><input class="timezone" list="timezones" spellcheck="false" placeholder="America/New_York"><small>Ранее использованные значения сохраняются в списке</small></label>
+      </div>
+    </div>
+  </template>
+  <datalist id="locales"></datalist>
+  <datalist id="timezones"></datalist>
+  <script src="options.js"></script>
+</body>
+</html>

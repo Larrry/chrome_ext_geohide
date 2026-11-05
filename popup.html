@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Domain Locale & Timezone</title>
+  <style>
+    :root {font: 13px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color-scheme:light}
+    * {box-sizing:border-box}
+    body {width:336px;margin:0;padding:18px;background:#f7f8fc;color:#182338}
+    h1 {font-size:16px;margin:0 0 15px}
+    p {margin:9px 0;color:#52647b}
+    .master {display:flex;align-items:center;justify-content:space-between;gap:14px;background:white;border:1px solid #e1e6ee;border-radius:10px;padding:12px;margin-bottom:12px;cursor:pointer}
+    .master strong {font-size:14px;display:block}
+    .master small {display:block;color:#687991;margin-top:2px;font-size:11px}
+    .master input {position:absolute;opacity:0;width:1px;height:1px}
+    .track {width:43px;height:25px;flex-shrink:0;display:block;border-radius:20px;background:#aeb9ca;position:relative;transition:background .15s}
+    .track:after {content:"";position:absolute;width:19px;height:19px;top:3px;left:3px;background:#fff;border-radius:50%;box-shadow:0 1px 3px #0002;transition:transform .15s}
+    .master input:checked + .track {background:#2257cc}
+    .master input:checked + .track:after {transform:translateX(18px)}
+    .master input:focus-visible + .track {outline:3px solid #9dbbff;outline-offset:2px}
+    .master input:disabled + .track {opacity:.5}
+    .badge {background:#e2edff;border-radius:7px;padding:10px;color:#18418d;white-space:pre-wrap;overflow-wrap:anywhere;min-height:45px}
+    .badge.off {background:#f5e9e9;color:#7b3540}
+    .message {font-size:11px;color:#b03b46;min-height:0}
+    button {width:100%;border:0;background:#2355d1;color:#fff;padding:11px;border-radius:8px;cursor:pointer;font-weight:600;margin-top:12px}
+    .help {font-size:11px;color:#697b93;margin:12px 0 0}
+  </style>
+</head>
+<body>
+  <h1>Локаль и таймзона</h1>
+  <label class="master" for="globalEnabled">
+    <span><strong id="switchTitle">Расширение включено</strong><small>Для всех настроенных доменов</small></span>
+    <span><input type="checkbox" id="globalEnabled" role="switch" checked><span class="track"></span></span>
+  </label>
+  <div class="badge" id="current">Проверка текущего сайта…</div>
+  <div class="message" id="message" role="status" aria-live="polite"></div>
+  <button type="button" id="settings">Настроить домены</button>
+  <p class="help">Изменения применяются к новым загрузкам. Уже открытые страницы нужно обновить.</p>
+  <script src="popup.js"></script>
+</body>
+</html>
